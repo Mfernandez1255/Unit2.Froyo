@@ -1,29 +1,20 @@
-const userInputString = prompt (`We offer Vanilla, Strawberry, and Coffee flavored frozen yogurt`, "Vanilla, Strawberry, Coffee");
+//Asks user what they would like
+const userInput = prompt("What flavor froyo would you like?","Vanilla, Strawberry, Coffee");
+const flavors = userInput.split(",");
 
-const stringArray = userInputString.split(",");
+// Create an object to store the counts of each flavor
+const flavorCount = {};
 
-const flavors = [];
-for (let i = 0; i < stringArray.length; i++) {
-    const str = stringArray[i];
-    const flavor = parseInt(str);
-    flavors.push(flavor);
+// Loop through the flavors array and count each flavor
+for (const flavor of flavors) {
+  if (flavorCount[flavor]) {
+    // If the flavor already exists in the object, increment the count
+    flavorCount[flavor]++;
+  } else {
+    // If the flavor doesn't exist in the object, initialize the count to 1
+    flavorCount[flavor] = 1;
   }
-
-console.table(flavors);
-
-function displayName(flavors){
-    let name = 0;
-    for(i=0; i < flavors.length; i++){
-        name = flavors[i];
-    }
-    return name;
-}
-console.log(displayName(stringArray.toString()));
-
-const listedItems = {
-    Vanilla: stringArray[0],
-    Strawberry: stringArray[1],
-    Coffee: stringArray[2]
 }
 
-console.table(listedItems);
+// Display the flavor counts in the browser console
+console.table(flavorCount);
